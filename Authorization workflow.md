@@ -5,7 +5,7 @@ Authorization
 
 `                `Oauth
 
-![](Aspose.Words.c11aa326-4b5a-4cc2-bb2e-8f7e7c54b19d.001.png)
+![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.001.png)
 
 
 
@@ -68,67 +68,109 @@ Here we have a frontend running in 3000 ports.
 
 and we scale backend service into 3 ports ( 3311, 3312, 3313 )		
 
-![](Aspose.Words.c11aa326-4b5a-4cc2-bb2e-8f7e7c54b19d.002.png)
+![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.002.png)
 ## <a name="_fbv58y28l4a4"></a>**1) KEYCLOAK SETUP**
+`	`Run Your Keycloak service in Local Environment.  
+
+`	`That service will be available in PORT :  8180 
+
+`	`Open this URL : <http://localhost:8180> in Browser 
+
+`	`Login as admin : 
+
+`		`Default admin login details : 
+
+`			`1) username = admin
+
+`			`2) password = admin
+
+![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.003.png)
 1) ### <a name="_r9rkxn2v2xwr"></a>**ADD REALM**
 1. Log in to Keycloak with administrative privileges.
 1. Click on the "Add realm" button on the left-hand side of the screen.
 1. Enter name “Experimental ”
 
-![](Aspose.Words.c11aa326-4b5a-4cc2-bb2e-8f7e7c54b19d.003.png)
+![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.004.png)
 1) ### <a name="_sawb02812nv7"></a>**ADD CLIENT**
 
-![](Aspose.Words.c11aa326-4b5a-4cc2-bb2e-8f7e7c54b19d.004.png)
+![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.005.png)
 
 1. Enter "myapp" in the "Name" field and click on the "Create" button.
-1. On the left-hand side of the screen, click on the "Clients" tab, then click on the "Create" button.
+
+![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.006.png)
+
+![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.007.png)
+### ![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.008.png)<a name="_2efklnebw790"></a>	![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.009.png)
 1. Enter a name for your client, such as "myapp", and select "confidential" as the client type.
 1. Under the "Access" tab, set "Valid Redirect URIs" to the callback URL of your application. For example, if your application is running on localhost, you could set it to "http://localhost:3000/\*".
 1. Under the "Credentials" tab, generate a new client secret and make a note of it.
+1. Add Another client called Client ID = grafana, and 
 
-![](Aspose.Words.c11aa326-4b5a-4cc2-bb2e-8f7e7c54b19d.005.png)
+` `CLient Protocol=openid-connect
 
-![](Aspose.Words.c11aa326-4b5a-4cc2-bb2e-8f7e7c54b19d.006.png)
-### ![](Aspose.Words.c11aa326-4b5a-4cc2-bb2e-8f7e7c54b19d.007.png)<a name="_35o8gsxqrpw0"></a>	![](Aspose.Words.c11aa326-4b5a-4cc2-bb2e-8f7e7c54b19d.008.png)
-1) ### <a name="_pi5be3jtn4kx"></a>**ADD USER**
+![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.010.png)
+
+1. in the next window, change Access Type to confidential
+
+![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.011.png)
+
+1. then click Save at the bottom. On Credentials tab, copy the secret
+
+![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.012.png)
+
+1. Still on grafana clients, click Mappers tab, then click create
+
+![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.013.png)
+
+1. Name : roles, Mapper Type : User Realm Role, Token Claim Name : roles
+###
+1) ### <a name="_35o8gsxqrpw0"></a><a name="_pi5be3jtn4kx"></a>**ADD USER**
 1) Enter name and email with first name.. and set Email verified as true
 1) Then click save button
 
-`	`![](Aspose.Words.c11aa326-4b5a-4cc2-bb2e-8f7e7c54b19d.009.png)
+`	`![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.014.png)
 
 1) Click on Role Mapping and give basic role access to that user 
 
-![](Aspose.Words.c11aa326-4b5a-4cc2-bb2e-8f7e7c54b19d.010.png)
+![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.015.png)
 
 1) Go to the credentials tab and set the password.. 
 1) Then click on reset password
-## ![](Aspose.Words.c11aa326-4b5a-4cc2-bb2e-8f7e7c54b19d.011.png)
+## ![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.016.png)
 ## <a name="_e45hablvyn4e"></a><a name="_cmh56h6oka98"></a>**2) KONG SETUP**
 `	`Kong with plugins for CORS, OIDC, and upstream load balancing
 
 Here are the steps you can follow:
+
+`	`Run Your Kong service in Local Environment.  
+
+`	`That service will be available in PORT :  1337
+
+`	`Open this URL : http://localhost:1337 in Browser 
+
+`	`Login as admin : First time we have to create admin and password details.
 1) ### <a name="_57dmkgm1r5lm"></a>**ADD UPSTREAM**
 1) Create Upstream service name called “demo” , Hash on value “cookie”
 
 and hash fallback “none”
 
-![](Aspose.Words.c11aa326-4b5a-4cc2-bb2e-8f7e7c54b19d.012.png)
+![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.017.png)
 
 1) set user define value for Hash on cookie as like “user\_type”
 
-![](Aspose.Words.c11aa326-4b5a-4cc2-bb2e-8f7e7c54b19d.013.png)
+![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.018.png)
 
 1) Now, click on the “Targets page” of the upstream add all backend ports. 
 
 ( 3311,3312,3313 )
 
-![](Aspose.Words.c11aa326-4b5a-4cc2-bb2e-8f7e7c54b19d.014.png)
+![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.019.png)
 1) ### <a name="_2l0bsn9fp423"></a>**ADD SERVICE**
 1) click on Services -> add new Services 
 1) create name as “upstream”
 1) set host as “demo” (Upstream for load balance)
 
-![](Aspose.Words.c11aa326-4b5a-4cc2-bb2e-8f7e7c54b19d.015.png)
+![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.020.png)
 1) ### <a name="_hc830em85awb"></a>**ADD PLUGINS**
 we have to add two plugins in this process OIDC , CORS
 
@@ -163,11 +205,11 @@ curl --location 'http://localhost:8001/plugins' \
 1) Then in ADD FORM set Header as Authorization, methods as GET and POST
 1) Click on save changes
 
-![](Aspose.Words.c11aa326-4b5a-4cc2-bb2e-8f7e7c54b19d.016.png)
+![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.021.png)
 
 1) After adding both plugin, kong will display both active plugins in UI
 
-![](Aspose.Words.c11aa326-4b5a-4cc2-bb2e-8f7e7c54b19d.017.png)
+![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.022.png)
 ## <a name="_u6wf7hcwy7wc"></a>**3) UI**
 1) ### <a name="_ce4x36ywq8jf"></a>**SETUP**
 1. Clone frontend code from git -> frontend 
@@ -184,7 +226,7 @@ curl --location 'http://localhost:8001/plugins' \
 
 “This site can’t be reached”
 
-![](Aspose.Words.c11aa326-4b5a-4cc2-bb2e-8f7e7c54b19d.018.png)
+![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.023.png)
 1) ### <a name="_1dtzd55ppn5e"></a>**Config Details**
 `     `**Go to -> cg\_account\_summary\_frontend\.env**
 
