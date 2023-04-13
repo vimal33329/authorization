@@ -90,17 +90,17 @@ and we scale backend service into 3 ports ( 3311, 3312, 3313 )
 1. Click on the "Add realm" button on the left-hand side of the screen.
 1. Enter name “Experimental ”
 
-![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.004.png)
+![](addrealm.png)
 1) ### <a name="_sawb02812nv7"></a>**ADD CLIENT**
 
-![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.005.png)
+![](addclient.png)
 
 1. Enter "myapp" in the "Name" field and click on the "Create" button.
 
-![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.006.png)
+![](clientid1.png)
 
-![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.007.png)
-### ![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.008.png)<a name="_2efklnebw790"></a>	![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.009.png)
+![](clientid2.png)
+### ![](clientid3.png)<a name="_2efklnebw790"></a>	![](clientid4.png)
 1. Enter a name for your client, such as "myapp", and select "confidential" as the client type.
 1. Under the "Access" tab, set "Valid Redirect URIs" to the callback URL of your application. For example, if your application is running on localhost, you could set it to "http://localhost:3000/\*".
 1. Under the "Credentials" tab, generate a new client secret and make a note of it.
@@ -108,15 +108,15 @@ and we scale backend service into 3 ports ( 3311, 3312, 3313 )
 
 ` `CLient Protocol=openid-connect
 
-![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.010.png)
+![](openid-connect.png)
 
 1. in the next window, change Access Type to confidential
 
-![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.011.png)
+![](confidential.png)
 
 1. then click Save at the bottom. On Credentials tab, copy the secret
 
-![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.012.png)
+![](grafanaclients1.png)
 
 1. Still on grafana clients, click Mappers tab, then click create
 
@@ -128,15 +128,15 @@ and we scale backend service into 3 ports ( 3311, 3312, 3313 )
 1) Enter name and email with first name.. and set Email verified as true
 1) Then click save button
 
-`	`![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.014.png)
+`	`![](adduser.png)
 
 1) Click on Role Mapping and give basic role access to that user 
 
-![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.015.png)
+![](usermapping.png)
 
 1) Go to the credentials tab and set the password.. 
 1) Then click on reset password
-## ![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.016.png)
+## ![](setpassword.png)
 ## <a name="_e45hablvyn4e"></a><a name="_cmh56h6oka98"></a>**2) KONG SETUP**
 `	`Kong with plugins for CORS, OIDC, and upstream load balancing
 
@@ -154,23 +154,23 @@ Here are the steps you can follow:
 
 and hash fallback “none”
 
-![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.017.png)
+![](kong-addupstream.png)
 
 1) set user define value for Hash on cookie as like “user\_type”
 
-![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.018.png)
+![](kong-hash.png)
 
 1) Now, click on the “Targets page” of the upstream add all backend ports. 
 
 ( 3311,3312,3313 )
 
-![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.019.png)
+![](kong-targers-backend.png)
 1) ### <a name="_2l0bsn9fp423"></a>**ADD SERVICE**
 1) click on Services -> add new Services 
 1) create name as “upstream”
 1) set host as “demo” (Upstream for load balance)
 
-![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.020.png)
+![](kong-addservice.png)
 1) ### <a name="_hc830em85awb"></a>**ADD PLUGINS**
 we have to add two plugins in this process OIDC , CORS
 
@@ -205,11 +205,11 @@ curl --location 'http://localhost:8001/plugins' \
 1) Then in ADD FORM set Header as Authorization, methods as GET and POST
 1) Click on save changes
 
-![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.021.png)
+![](kong-targerupstream.png)
 
 1) After adding both plugin, kong will display both active plugins in UI
 
-![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.022.png)
+![](customplugins.png)
 ## <a name="_u6wf7hcwy7wc"></a>**3) UI**
 1) ### <a name="_ce4x36ywq8jf"></a>**SETUP**
 1. Clone frontend code from git -> frontend 
@@ -226,7 +226,7 @@ curl --location 'http://localhost:8001/plugins' \
 
 “This site can’t be reached”
 
-![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.023.png)
+![](uitestpage.png)
 1) ### <a name="_1dtzd55ppn5e"></a>**Config Details**
 `     `**Go to -> cg\_account\_summary\_frontend\.env**
 
