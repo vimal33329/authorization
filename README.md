@@ -5,7 +5,7 @@ Authorization
 
 `                `Oauth
 
-![](screenshot/keycloacklogin.png)
+![](keycloacklogin.png)
 
 
 
