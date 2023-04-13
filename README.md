@@ -68,7 +68,7 @@ Here we have a frontend running in 3000 ports.
 
 and we scale backend service into 3 ports ( 3311, 3312, 3313 )		
 
-![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.002.png)
+![](localportsetup.png)
 ## <a name="_fbv58y28l4a4"></a>**1) KEYCLOAK SETUP**
 `	`Run Your Keycloak service in Local Environment.  
 
