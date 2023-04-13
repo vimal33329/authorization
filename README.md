@@ -84,7 +84,7 @@ and we scale backend service into 3 ports ( 3311, 3312, 3313 )
 
 `			`2) password = admin
 
-![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.003.png)
+![](keycloackloginpage.png)
 1) ### <a name="_r9rkxn2v2xwr"></a>**ADD REALM**
 1. Log in to Keycloak with administrative privileges.
 1. Click on the "Add realm" button on the left-hand side of the screen.
