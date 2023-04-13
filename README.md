@@ -5,7 +5,7 @@ Authorization
 
 `                `Oauth
 
-![](Aspose.Words.064704aa-06ae-4a8c-9cc4-55ffef03269f.001.png)
+![](screenshot/keycloacklogin.png)
 
 
 
